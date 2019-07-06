@@ -1,6 +1,10 @@
 <?php
 require_once('librairies/database.php');
 require_once ('librairies/utils.php');
+//Models
+require_once ('librairies/models/Article.php');
+require_once('librairies/models/Comment.php');
+
 
 /**
  * CE FICHIER DOIT ENREGISTRER UN NOUVEAU COMMENTAIRE EST REDIRIGER SUR L'ARTICLE !
@@ -15,6 +19,11 @@ require_once ('librairies/utils.php');
  * 
  * Et enfin on pourra rediriger l'utilisateur vers l'article en question
  */
+
+
+
+$articleModel = new Article();
+$commentModel = new Comment();
 
 /**
  * 1. On vérifie que les données ont bien été envoyées en POST
@@ -46,31 +55,17 @@ if (!$author || !$article_id || !$content) {
     die("Votre formulaire a été mal rempli !");
 }
 
-/**
- * 2. Vérification que l'id de l'article pointe bien vers un article qui existe
- * Ca nécessite une connexion à la base de données puis une requête qui va aller chercher l'article en question
- * Si rien ne revient, la personne se fout de nous.
- * 
- * Attention, on précise ici deux options :
- * - Le mode d'erreur : le mode exception permet à PDO de nous prévenir violament quand on fait une connerie ;-)
- * - Le mode d'exploitation : FETCH_ASSOC veut dire qu'on exploitera les données sous la forme de tableaux associatifs
- * 
- * PS : Ca fait pas genre 3 fois qu'on écrit ces lignes pour se connecter ?! 
- */
-$pdo = getPDO();
 
 
-$query = $pdo->prepare('SELECT * FROM articles WHERE id = :article_id');
-$query->execute(['article_id' => $article_id]);
+$article = $articleModel->find($article_id);
 
 // Si rien n'est revenu, on fait une erreur
-if ($query->rowCount() === 0) {
+if (!$article) {
     die("Ho ! L'article $article_id n'existe pas boloss !");
 }
 
 // 3. Insertion du commentaire
-$query = $pdo->prepare('INSERT INTO comments SET author = :author, content = :content, article_id = :article_id, created_at = NOW()');
-$query->execute(compact('author', 'content', 'article_id'));
+$commentModel->insert($author, $content,$article_id);
 
 // 4. Redirection vers l'article en question :
 

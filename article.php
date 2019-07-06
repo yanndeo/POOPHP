@@ -1,6 +1,9 @@
 <?php
 require_once('librairies/database.php');
 require_once('librairies/utils.php');
+//Models
+require_once ('librairies/models/Article.php');
+require_once('librairies/models/Comment.php');
 
 /**
  * CE FICHIER DOIT AFFICHER UN ARTICLE ET SES COMMENTAIRES !
@@ -12,6 +15,13 @@ require_once('librairies/utils.php');
  * 
  * On va ensuite afficher l'article puis ses commentaires
  */
+
+
+
+$articleModel = new Article();
+$commentModel = new Comment();
+
+
 
 /**
  * 1. Récupération du param "id" et vérification de celui-ci
@@ -37,7 +47,7 @@ if (!$article_id) {
  * jamais confiance à ce connard d'utilisateur ! :D
  */
 
-$article = findArticle($article_id);
+$article = $articleModel->find($article_id);
 
 
 /**
@@ -45,7 +55,7 @@ $article = findArticle($article_id);
  * Pareil, toujours une requête préparée pour sécuriser la donnée filée par l'utilisateur (cet enfoiré en puissance !)
  */
 
-$commentaires = findAllCommentsByArticle($article_id);
+$commentaires =$commentModel->findAllCommentsByArticle($article_id);
 
 /**
  * 5. On affiche 

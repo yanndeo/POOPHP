@@ -1,24 +1,29 @@
 <?php
 require_once('librairies/database.php');
 require_once('librairies/utils.php');
+//Models
+require_once ('librairies/models/Article.php');
+require_once ('librairies/models/User.php');
 
 
 /**
  * CE FICHIER A POUR BUT D'AFFICHER LA PAGE D'ACCUEIL !
- * 
- * On va donc se connecter à la base de données, récupérer les articles du plus récent au plus ancien (SELECT * FROM articles ORDER BY created_at DESC)
- * puis on va boucler dessus pour afficher chacun d'entre eux
  */
 
+$model = new  Article();
 
+$userModel = new User();
 
-$pdo = getPDO();
+$users = $userModel->findAll();
+
+//var_dump($users); die();
+
 
 /**
  * 2. Récupération des articles
  */
 
-$articles = findAllArticles();
+$articles = $model->findAll(" created_at DESC");
 
 
 /**
