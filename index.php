@@ -1,35 +1,12 @@
 <?php
-require_once('librairies/database.php');
-require_once('librairies/utils.php');
-//Models
-require_once ('librairies/models/Article.php');
-require_once ('librairies/models/User.php');
 
+require_once('librairies/controllers/Article.php');
 
 /**
- * CE FICHIER A POUR BUT D'AFFICHER LA PAGE D'ACCUEIL !
+ * Se fichier à pour but d'afficher la page d'accueil
  */
 
-$model = new  Article();
-
-$userModel = new User();
-
-$users = $userModel->findAll();
-
-//var_dump($users); die();
 
 
-/**
- * 2. Récupération des articles
- */
-
-$articles = $model->findAll(" created_at DESC");
-
-
-/**
- * 3. Affichage
- */
-$pageTitle = "Accueil";
-
-
-render('articles/index', compact( 'pageTitle','articles'));
+$controller = new \Controllers\Article();
+$controller->index();
