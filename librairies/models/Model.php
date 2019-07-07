@@ -4,7 +4,6 @@ namespace Models;
 
 
 require_once('librairies/autoload.php');
-require_once('librairies/database.php');
 
 
 
@@ -19,7 +18,7 @@ abstract class Model {
     public function __construct()
     {
 
-        $this->pdo = getPDO();
+        $this->pdo = \Database::getPDO();  // le \ indique a l'autoload que le database est dans aucun namespaces
     }
 
 

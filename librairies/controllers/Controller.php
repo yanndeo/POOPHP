@@ -17,7 +17,7 @@ abstract class Controller
 
     public function __construct()
     {
-        $this->model = new $this->modelName();
+        $this->model = new $this->modelName();  //instancie le model
 
     }
 

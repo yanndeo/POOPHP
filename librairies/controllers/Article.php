@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-require_once('librairies/utils.php');
 
 
 
@@ -20,7 +19,7 @@ require_once('librairies/utils.php');
 
             $pageTitle = "Accueil";
 
-            render('articles/index', compact( 'pageTitle','articles'));
+            \Renderer::render('articles/index', compact( 'pageTitle','articles'));
 
         }
 
@@ -55,7 +54,7 @@ require_once('librairies/utils.php');
             $pageTitle = $article['title'];
 
 
-            render('articles/show', compact(
+            \Renderer::render('articles/show', compact(
                 'pageTitle',
                 'article',
                 'commentaires',
@@ -91,7 +90,7 @@ require_once('librairies/utils.php');
 
             $this->model->delete($id);
 
-            redirect('index');
+           \Http::redirect('index');
 
         }
 

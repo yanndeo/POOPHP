@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-require_once('librairies/utils.php');
 
 
 class Comment extends Controller {
@@ -49,7 +48,7 @@ class Comment extends Controller {
 
         $this->model->insert($author, $content,$article_id);
 
-        redirect('article',$article_id);
+        \Http::redirect('index.php?controller=article&task=show&id='.$article_id);
 
     }
 
@@ -80,7 +79,7 @@ class Comment extends Controller {
         $this->model->delete($id);
 
 
-        redirect('article',$article_id);
+        \Http::redirect('index.php?controller=article&task=show&id='.$article_id);
     }
 
 
