@@ -1,6 +1,6 @@
 <?php
 
-require_once('librairies/controllers/Comment.php');
+require_once('librairies/autoload.php');
 
 
 /**

@@ -1,7 +1,6 @@
 <?php
 
-require_once('librairies/controllers/Article.php');
-
+require_once('librairies/autoload.php');
 /**
  * Se fichier à pour but d'afficher la page d'accueil
  */

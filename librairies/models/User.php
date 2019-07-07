@@ -1,7 +1,7 @@
 <?php
 namespace Models;
 
-require_once('librairies/models/Model.php');
+require_once('librairies/autoload.php');
 
 
 class User extends Model

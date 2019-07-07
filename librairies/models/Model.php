@@ -1,7 +1,13 @@
 <?php
 
 namespace Models;
+
+
+require_once('librairies/autoload.php');
 require_once('librairies/database.php');
+
+
+
 
 
 abstract class Model {

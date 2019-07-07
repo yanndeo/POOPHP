@@ -2,7 +2,10 @@
 
 namespace Models;
 
-require_once('librairies/models/Model.php');
+require_once('librairies/autoload.php');
+
+
+
 
     class Article extends Model
     {

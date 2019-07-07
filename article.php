@@ -1,5 +1,5 @@
 <?php
-require_once('librairies/controllers/Article.php');
+require_once('librairies/autoload.php');
 
 /**
  * CE FICHIER DOIT AFFICHER UN ARTICLE ET SES COMMENTAIRES !

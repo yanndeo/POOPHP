@@ -3,19 +3,13 @@
 namespace Controllers;
 
 require_once('librairies/utils.php');
-require_once('librairies/controllers/Controller');
-
-
-//Models
-require_once ('librairies/models/Article.php');
-require_once('librairies/models/Comment.php');
 
 
 
     class Article extends Controller
     {
 
-       protected $modelName = "\Models\Article()";
+       protected $modelName = "\Models\Article";
 
 
 
